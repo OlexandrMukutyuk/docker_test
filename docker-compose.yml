@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  mysunset_php:
+    build: ./php
+    ports:
+      - 8081:80
+
+  mysunset_db:
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  mysunset_phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
